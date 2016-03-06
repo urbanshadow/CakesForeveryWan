@@ -5,6 +5,9 @@
     "patches": [
         {
             "name": "patch1.bin"
+        },
+		{
+            "name": "patch2.bin"
         }
     ],
     "version_specific": [
@@ -14,6 +17,9 @@
             "patches": [
                 {
                     "offset": "0x08085AFC"
+                },
+				{
+                    "offset": "0x01FFB6F0"
                 }
             ]
         }
