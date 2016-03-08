@@ -14,6 +14,8 @@ struct firm_signature {
     unsigned int version;
     char version_string[8];
     enum consoles console;
+	unsigned int p9radd;
+	unsigned int a9hjbadd;
 };
 
 extern firm_h *firm_loc;
