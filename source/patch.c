@@ -14,11 +14,13 @@
 #include "config.h"
 #include "fatfs/ff.h"
 #include "fatfs/sdmmc/sdmmc.h"
+#include "a9hook.h"
 
 enum types {
     NATIVE_FIRM,
     TWL_FIRM,
-    AGB_FIRM
+    AGB_FIRM,
+	A9_HOOK
 };
 
 struct cake_header {
@@ -160,7 +162,10 @@ int patch_firm(char *filename)
     firm_h *firm = NULL;
 
     switch (firm_patch_temp->type) {
-        case NATIVE_FIRM:
+        case A9_HOOK:
+			if(!load_arm9_hook(current_firm->version)) return 1;
+			firm_patch_temp->type = NATIVE_FIRM;
+		case NATIVE_FIRM:
             firm = firm_loc;
             break;
         case AGB_FIRM:

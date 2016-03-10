@@ -26,7 +26,8 @@ console_dict = {
 type_dict = {
     "NATIVE_FIRM": 0,
     "TWL_FIRM": 1,
-    "AGB_FIRM": 2
+    "AGB_FIRM": 2,
+	"A9_HOOK": 0
 }
 
 options_dict = {
