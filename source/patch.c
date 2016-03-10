@@ -26,7 +26,7 @@ enum types {
 struct cake_header {
     uint8_t count: 8;
     uint8_t firm_ver: 8;
-    enum types type: 4;
+	enum types type: 4;
     enum consoles console: 4;
     uint8_t patches_offset: 8;
     char name[];
@@ -163,7 +163,7 @@ int patch_firm(char *filename)
 
     switch (firm_patch_temp->type) {
         case A9_HOOK:
-			if(!load_arm9_hook(current_firm->version)) return 1;
+			if(load_arm9_hook(current_firm->version)) return 1;
 			firm_patch_temp->type = NATIVE_FIRM;
 		case NATIVE_FIRM:
             firm = firm_loc;
@@ -324,6 +324,7 @@ int load_cakes_info(const char *dirpath)
         // Only add patches applicable to the loaded firms
         struct firm_signature *current = NULL;
         switch (header.type) {
+			case A9_HOOK:
             case NATIVE_FIRM:
                 current = current_firm;
                 break;
