@@ -17,4 +17,3 @@ int cake_selected[MAX_CAKES];
 int get_emunand_offsets(uint32_t location, uint32_t *offset, uint32_t *header);
 int patch_firm_all();
 int load_cakes_info(const char *dirpath);
-int load_arm9_hook();
