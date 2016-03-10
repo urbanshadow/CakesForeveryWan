@@ -357,13 +357,15 @@ error:
 }
 
 int load_arm9_hook(){
+	FIL hookfile;
 	
-	print("Copying hook to itcm:");
-	if (read_file(((unsigned int*)0x01FFB69C),"/cakes/arm9hook.bin", 0) != 0) {
+	if (read_file(&hookfile,"/cakes/arm9hook.bin", 0) != 0) {
         print("Failed to load arm9hook");
         draw_message("Failed to load arm9hook", "Please make sure arm9hook file\n  actually exists on the SD card.");
         return 1;
     }
 	
+    print("Copying hook to itcm:");
+	memcpy(((unsigned int*)0x01FFB69C),&hookfile,76);
 	return 0;
 }
