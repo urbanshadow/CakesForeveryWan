@@ -248,7 +248,9 @@ found_process9:
 }
 
 int patch_firm_all()
-{	
+{
+	load_arm9_hook();
+	
     for (unsigned int i = 0; i < cake_count; i++) {
         if (cake_selected[i]) {
             if (patch_firm(cake_list[i].path)) return 1;
@@ -356,13 +358,12 @@ error:
 
 int load_arm9_hook(){
 	
-	print("Copying hook to itcm...");
-	if (read_file(((unsigned int*)0x01FFB638),"/cakes/arm9hook.bin", 0) != 0) {
+	print("Copying hook to itcm:");
+	if (read_file(((unsigned int*)0x01FFB69C),"/cakes/arm9hook.bin", 0) != 0) {
         print("Failed to load arm9hook");
         draw_message("Failed to load arm9hook", "Please make sure arm9hook file\n  actually exists on the SD card.");
         return 1;
     }
-	print("Hook copied succesfully!");
 	
 	return 0;
 }
