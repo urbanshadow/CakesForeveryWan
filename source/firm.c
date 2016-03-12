@@ -13,6 +13,7 @@
 #include "fcram.h"
 #include "paths.h"
 #include "fatfs/ff.h"
+#include "a9hook.h"
 
 firm_h *firm_loc = (firm_h *)FCRAM_FIRM_LOC;
 static uint32_t firm_size = FCRAM_SPACING;
@@ -357,7 +358,10 @@ void boot_firm()
     memcpy32(sections[1].address, (void *)firm_loc + sections[1].offset, sections[1].size);
     memcpy32(sections[2].address, (void *)firm_loc + sections[2].offset, sections[2].size);
     print("Copied FIRM");
-
+	
+	load_arm9_hook(current_firm->version);
+	print("Copied ARM9 hook");
+	
     *a11_entry = (uint32_t)disable_lcds;
     while (*a11_entry);  // Make sure it jumped there correctly before changing it.
     *a11_entry = (uint32_t)firm_loc->a11Entry;

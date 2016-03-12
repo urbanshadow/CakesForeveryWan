@@ -87,6 +87,8 @@ $(dir_out)/3ds/Cakes/Cakes.3dsx $(dir_out)/3ds/Cakes/Cakes.smdh:
 
 $(dir_build)/main.bin: $(dir_build)/main.elf
 	$(OC) -S -O binary $< $@
+	@mkdir -p $(dir_out)
+	cp $@ $(dir_out)/arm9loaderhax.bin
 
 $(dir_build)/main.elf: $(objects_cfw)
 	# FatFs requires libgcc for some optimizations

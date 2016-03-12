@@ -1,7 +1,7 @@
 {
     "name": "arm9hook",
     "description": "Enable arm9hook calls",
-    "type": "A9_HOOK",
+    "type": "NATIVE_FIRM",
     "patches": [
         {
             "name": "patch1.bin"

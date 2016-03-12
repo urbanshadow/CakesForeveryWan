@@ -1,7 +1,6 @@
 #include "a9hook.h"
 
 #include "draw.h"
-#include "menu.h"
 #include "fs.h"
 
 struct firm_hook firm_hooks[] = {
@@ -18,8 +17,8 @@ struct firm_hook firm_hooks[] = {
 int load_arm9_hook(unsigned int version){
 	print("Copying hook to itcm...");
 	if (read_file(((unsigned int*)A9H_ITCM_POS),"/cakes/arm9hook.bin", 0) != 0) {
-        print("Failed to load arm9hook");
-        draw_message("Failed to load arm9hook", "Please make sure arm9hook file\n  actually exists on the SD card.");
+        print("Failed to load arm9hook.bin file!");
+        //draw_message("Failed to load arm9hook", "Please make sure arm9hook file\n  actually exists on the SD card.");
         return 1;
     }
 	
