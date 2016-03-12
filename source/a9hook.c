@@ -5,6 +5,10 @@
 
 struct firm_hook firm_hooks[] = {
 	{
+		.version = 0x50,
+		.p9return = 0x0808604C
+	},
+	{
 		.version = 0x1B,
 		.p9return = 0x080860A0
 	},
